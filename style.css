@@ -1,54 +1,37 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins',sans-serif;
-    box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Your Website</title>
+</head>
+<body>
+    <div class="navigation">
+        <button onclick="loadPage('home.html')">Home</button>
+        <button onclick="loadPage('calculator.html')">Calculator</button>
+        <button onclick="loadPage('signup.html')">Signup</button>
+    </div>
+    <div class="content" id="content">
+        <!-- Content will be loaded dynamically here -->
+    </div>
+    <script>
+        function loadPage(page) {
+            var content = document.getElementById('content');
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    content.innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", page, true);
+            xhttp.send();
+        }
 
-.container{
-    width: 100%;
-    height: 100vh;
-    background: #e3f9ff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.calculator{
-    background: #0e0c1a6c;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.calculator form input{
-    border: 0;
-    outline: 0;
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
-    box-shadow: -8px -8px 15px rgba(225, 225, 225, 0.1),5px 5px 15px rgba(0, 0, 0, 0.2);
-    background: transparent;
-    font-size: 20px;
-    color: #fff;
-}
-
-form .display{
-    display: flex;
-    justify-content: flex-end;
-    margin: 20px 0px;
-}
-
-form .display input{
-    text-align: left;
-    flex: 1;
-    font-size: 45px;
-    box-shadow: none;
-}
-
-form input.operator{
-    color: rgb(12, 12, 7);
-}
-
-form input.equals{
-     background-color: red;
-}
+        // Load home page by default
+        window.onload = function () {
+            loadPage('home.html');
+        };
+    </script>
+</body>
+</html>
